@@ -1,12 +1,47 @@
 package com.ssafy.backend.dto;
 
 public class HouseDto {
-
+	
+	private String aptNo;
 	private int aptCode;
 	private String aptName;
+	private int buildYear;
+	private String dealAmount;
+	private int dealYear;
+	private int dealMonth;
+	private boolean userLiked;
+	public String getDealAmount() {
+		return dealAmount;
+	}
+
+
+	public void setDealAmount(String dealAmount) {
+		this.dealAmount = dealAmount;
+	}
+
+
+	public int getDealYear() {
+		return dealYear;
+	}
+
+
+	public void setDealYear(int dealYear) {
+		this.dealYear = dealYear;
+	}
+
+
+	public int getDealMonth() {
+		return dealMonth;
+	}
+
+
+	public void setDealMonth(int dealMonth) {
+		this.dealMonth = dealMonth;
+	}
+
+
 	private String dongCode;
 	private String dongName;
-	private int buildYear;
 	private String jibun;
 	private String lat;
 	private String lng;
@@ -107,6 +142,26 @@ public class HouseDto {
 		return "HouseDto [aptCode=" + aptCode + ", aptName=" + aptName + ", dongCode=" + dongCode + ", dongName="
 				+ dongName + ", buildYear=" + buildYear + ", jibun=" + jibun + ", lat=" + lat + ", lng=" + lng
 				+ ", img=" + img + "]";
+	}
+
+
+	public String getAptNo() {
+		return aptNo;
+	}
+
+
+	public void setAptNo(String aptNo) {
+		this.aptNo = aptNo;
+	}
+
+
+	public boolean isUserLiked() {
+		return userLiked;
+	}
+
+
+	public void setUserLiked(boolean userLiked) {
+		this.userLiked = userLiked;
 	}
 
 }

@@ -64,11 +64,11 @@
           <li><a class="nav-link scrollto" href="./admin/notice.jsp">NOTICE</a></li>
           <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">BY REGION</a></li>
+              <li><a href="search/searchMain.jsp">BY REGION</a></li>
               <li><a href="#">BY NAME</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">FAVORITE</a></li>
+          <li><a class="nav-link scrollto" href="${root}/house?act=inquire&memId=${userInfo.memId}">FAVORITE</a></li>
           <li><a class="nav-link scrollto" href="${root}/board?act=list">BOARD</a></li>
           <li><a class="nav-link scrollto" href="${root}/member?act=memberinfo&id=${userInfo.memId}">INFO</a></li>
 <!-- 			<li><a class="nav-link scrollto" href="./member/memberInfo.jsp">INFO</a></li> -->
