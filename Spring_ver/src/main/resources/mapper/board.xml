@@ -3,7 +3,65 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.happyhouse.model.mapper.BoardMapper">
-
-
-
+	
+	<insert id="register" parameterType="BoardDto" >
+		 <selectKey resultType="int" keyProperty="postNo" order="BEFORE">
+			select MAX(no) + 1 from memboard
+		</selectKey>
+		insert into memboard (no, memId, title, content, date)
+		values (#{postNo}, #{memId}, #{title}, #{content}, now())
+	</insert>
+	
+	<resultMap type="BoardDto" id="articleList">
+		<result column="no" property="postNo"/>
+		<result column="memId" property="memId"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="date" property="regDate"/>
+	</resultMap>
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == 'title'">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'title'">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="list" parameterType="map" resultMap="articleList">
+		select b.no, b.memId, b.title, b.content, b.date, m.memName
+		from memboard b, member m
+		where b.memId = m.memId
+		<include refid="search"></include>
+		order by b.no desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(no)
+		from memboard
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+	
+	<select id="getPost" parameterType="int" resultType="BoardDto">
+		select no, title, content
+		from memboard
+		where no = #{no}
+	</select>
+	
+	<update id="update" parameterType="BoardDto">
+		update memboard
+		set title = #{title}, content = #{content}
+		where no = #{postNo}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from memboard
+		where no = #{postNo}
+	</delete>
 </mapper>

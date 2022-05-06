@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +20,18 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<HouseDto> searchByDong(String dongName, String memId) throws Exception {
-		return houseMapper.searchByDong(dongName, memId);
+	public List<HouseDto> searchByDong(Map<String, String> map) throws Exception {
+		return houseMapper.searchByDong(map);
 	}
 
 	@Override
-	public List<HouseDto> searchByApt(String aptName, String memId) throws Exception {
-		return houseMapper.searchByApt(aptName, memId);
+	public List<HouseDto> searchByApt(Map<String, String> map) throws Exception {
+		return houseMapper.searchByApt(map);
 	}
 
 	@Override
-	public int addFavoriteHouse(String aptNo, String aptCode, String memId) throws Exception {
-		return houseMapper.addFavoriteHouse(aptNo, aptCode, memId);
+	public int addFavoriteHouse(Map<String, String> map) throws Exception {
+		return houseMapper.addFavoriteHouse(map);
 	}
 
 	@Override
@@ -39,8 +40,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int deleteFavoriteHouse(String aptNo, String aptCode, String memId) throws Exception {
-		return houseMapper.deleteFavoriteHouse(aptNo, aptCode, memId);
+	public int deleteFavoriteHouse(Map<String, String> map) throws Exception {
+		return houseMapper.deleteFavoriteHouse(map);
 	}
 
 }

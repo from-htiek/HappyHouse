@@ -8,16 +8,16 @@
       <ul>
         <li><a class="nav-link scrollto" href="${root }/index.jsp">Home</a></li>
         <li><a class="nav-link scrollto" href="${root }/notice/notice.jsp">NOTICE</a></li>
-        <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="${root }/search/searchMain.jsp">BY REGION</a></li>
-            <li><a href="#">BY NAME</a></li>
-          </ul>
-        </li>
-        <li><a class="nav-link scrollto" href="${root}/house?act=inquire&memId=${userInfo.memId}">FAVORITE</a></li>
-        <li><a class="nav-link scrollto" href="#contact">BOARD</a></li>
-        <li><a class="nav-link scrollto" href="">INFO</a></li>
-        <li><a class="nav-link scrollto" href="">LOGOUT</a></li>
+          <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/house/search">BY REGION</a></li>
+              <li><a href="#">BY NAME</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="${root}/favorite/list/${userInfo.memId}">FAVORITE</a></li>
+           <li><a class="nav-link scrollto" href="${root}/board/list?pg=1&key=&word=">BOARD</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/info/${userInfo.memId}">INFO</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/logout">LOGOUT</a></li>
         <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
@@ -61,9 +61,9 @@
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col">
-                            <form id="search-form" action="${root }/house">
-      							<input type="hidden" name="act" value="dongsearch">
-      							<input type="hidden" name="memId" value="${userInfo.memId }">
+                            <form id="search-form" action="${root }/house/search/dong">
+      							<%-- <input type="hidden" name="act" value="dongsearch"> --%>
+      							<%-- <input type="hidden" name="memId" value="${userInfo.memId }"> --%>
                                 <select onchange="javascript: this.form.submit()" name="dong" id="dong" style="width: 100%; height: 30px;">
                                     <option selected>동선택</option>
                                 </select>
@@ -79,8 +79,8 @@
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
-	                    <form action="${root }/house">
-						<input type="hidden" name="act" value="aptsearch">
+	                    <form action="${root }/house/search/apt">
+<!-- 						<input type="hidden" name="act" value="aptsearch"> -->
 							<label for="apt">아파트 검색</label>
 							<input type="text" name="apt" id="apt" style="width: 100%; height: 30px;">
 							<input type="submit" value="검색" id="sbm_btn">		
@@ -121,8 +121,8 @@
                     <!--  DB houseLike의 id를 autoIncrement로 설정할 것 -->
                       <c:if test="${list ne null}">
                 			<c:forEach var="APT" items="${list }" varStatus="status">           
-                		<form action="${root }/house" method="post">
-                			<input type="hidden" name="act" value="favorite">
+                		<form action="${root }/house/favorite" method="post">
+<!--                 			<input type="hidden" name="act" value="favorite"> -->
                 			<input type="hidden" name="aptNo" value="${APT.aptNo }">
                 			<input type="hidden" name="aptCode" value="${APT.aptCode }">
                 			<input type="hidden" name="memId" value="${userInfo.memId }">

@@ -5,18 +5,18 @@
 
 <nav id="navbar" class="navbar">
 	<ul>
-		<li><a class="nav-link scrollto" href="${root}/index.jsp">Home</a></li>
-		<li><a class="nav-link scrollto" href="">NOTICE</a></li>
-		<li class="dropdown"><a href="#"><span>SEARCH</span> <i
-				class="bi bi-chevron-down"></i></a>
-			<ul>
-				<li><a href="#">BY REGION</a></li>
-				<li><a href="#">BY NAME</a></li>
-			</ul></li>
-		<li><a class="nav-link scrollto" href="#contact">FAVORITE</a></li>
-          <li><a class="nav-link scrollto" href="${root}/board?act=list">BOARD</a></li>
-          <li><a class="nav-link scrollto active" href="${root}/member?act=memberinfo&id=${userInfo.memId}">INFO</a></li>
-          <li><a class="nav-link scrollto" href="${root}/member?act=logout">LOGOUT</a></li>
+		<li><a class="nav-link scrollto" href="${root}/">Home</a></li>
+		<li><a class="nav-link scrollto" href="${root}/notice/list">NOTICE</a></li>
+          <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/house/search">BY REGION</a></li>
+              <li><a href="#">BY NAME</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="${root}/favorite/list/${userInfo.memId}">FAVORITE</a></li>
+           <li><a class="nav-link scrollto" href="${root}/board/list?pg=1&key=&word=">BOARD</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/info/${userInfo.memId}">INFO</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/logout">LOGOUT</a></li>
 		<!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
 	</ul>
 	<i class="bi bi-list mobile-nav-toggle"></i>
@@ -34,7 +34,7 @@
 		<div class="d-flex justify-content-between align-items-center">
 			<h2></h2>
 			<ol>
-				<li><a href="${root}/index.jsp">Home</a></li>
+				<li><a href="${root}/">Home</a></li>
 				<li>MY INFO</li>
 			</ol>
 		</div>
@@ -60,33 +60,33 @@
 				<div class="d-flex justify-content-between align-items-center mb-3">
 					<!-- <h6 class="text-right">Edit your profile</h6> -->
 				</div>
-				<form action="${root }/member" method="post">
+				<form action="${root }/member/update" method="post">
 					<input type="hidden" name="act" value="update" />
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="id">ID</label> <input type="text"
-								class="form-control" id="id" name="id"
+								class="form-control" id="memId" name="memId"
 								value="${userDetailInfo.memId}" readonly>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="pw">PASSWORD</label> <input type="password"
-								class="form-control" id="pw" name="pw"
+								class="form-control" id="memPw" name="memPw"
 								value="${userDetailInfo.memPw}">
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="name">NAME</label> <input type="text"
-							class="form-control" id="email" name="name"
+							class="form-control" id="memName" name="memName"
 							value="${userDetailInfo.memName}">
 					</div>
 					<div class="mb-3">
 						<label for="email">EMAIL</label> <input type="email"
-							class="form-control" id="email" name="email"
+							class="form-control" id="memEmail" name="memEmail"
 							value="${userDetailInfo.memEmail}">
 					</div>
 					<div class="mb-3">
 						<label for="tel">PHONE</label> <input type="text"
-							class="form-control" id="tel" name="tel"
+							class="form-control" id="memTel" name="memTel"
 							value="${userDetailInfo.memTel}">
 					</div>
 					<div class="row">

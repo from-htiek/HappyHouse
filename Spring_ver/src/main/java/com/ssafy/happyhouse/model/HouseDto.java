@@ -10,6 +10,7 @@ public class HouseDto {
 	private int dealYear;
 	private int dealMonth;
 	private boolean userLiked;
+	
 	public String getDealAmount() {
 		return dealAmount;
 	}

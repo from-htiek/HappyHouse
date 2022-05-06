@@ -75,7 +75,7 @@
 			class="container d-flex align-items-center justify-content-between">
 
 			<h1 class="logo">
-				<a href="${root}/index.jsp"">HAPPY HOUSE</a>
+				<a href="${root}/"">HAPPY HOUSE</a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -83,18 +83,18 @@
 
 			<nav id="navbar" class="navbar">
 				<ul>
-					<li><a class="nav-link scrollto" href="${root}/index.jsp">Home</a></li>
+					<li><a class="nav-link scrollto" href="${root}/">Home</a></li>
 					<li><a class="nav-link scrollto" href="">NOTICE</a></li>
-					<li class="dropdown"><a href="#"><span>SEARCH</span> <i
-							class="bi bi-chevron-down"></i></a>
-						<ul>
-							<li><a href="#">BY REGION</a></li>
-							<li><a href="#">BY NAME</a></li>
-						</ul></li>
-					<li><a class="nav-link scrollto" href="#contact">FAVORITE</a></li>
-          <li><a class="nav-link scrollto active" href="${root}/board?act=list">BOARD</a></li>
-          <li><a class="nav-link scrollto" href="${root}/member?act=memberinfo&id=${userInfo.memId}">INFO</a></li>
-          <li><a class="nav-link scrollto" href="${root}/member?act=logout">LOGOUT</a></li>
+          <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/house/search">BY REGION</a></li>
+              <li><a href="#">BY NAME</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="${root}/favorite/list/${userInfo.memId}">FAVORITE</a></li>
+           <li><a class="nav-link scrollto" href="${root}/board/list?pg=1&key=&word=">BOARD</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/info/${userInfo.memId}">INFO</a></li>
+          <li><a class="nav-link scrollto" href="${root}/member/logout">LOGOUT</a></li>
 					<!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
@@ -122,28 +122,44 @@
 	<!-- End Breadcrumbs -->
 
 
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $("#updateBtn").click(function () {
+                if (!$("#title").val()) {
+                    alert("제목을 입력해주세요");
+                    return;
+                } else if (!$("#content").val()) {
+                    alert("내용을 입력해주세요");
+                    return;
+                } else {
+                    $("#writeform").attr("action", "${root}/board/update").submit();
+                }
+            });
+        });
+    </script>
+
 	<main id="main">
 	<div class="container m-auto p-5">
 		<div class="row" id="boardwriteform">
-			<form action="${root }/board" method="post">
-			<input type="hidden" name="act" value="edit"/>
-			<input type="hidden" name="postNo" value="${post.postNo}" />
+			<form id="writeform" method="post" action="" >
+				<input type="hidden" value="${post.postNo}" id="postNo" name="postNo"/>
 				<div class="mb-3">
 					<input type="text" class="form-control" value="${post.title}" id="title" name="title">
 				</div>
-
-				<textarea id="summernote" name="content">${post.content}</textarea>
+ 
+				<textarea id="content" name="content">${post.content}</textarea>
 				<script>
-         			$('#summernote').summernote({
+         			$('#content').summernote({
 //             		placeholder: 'Please enter your content.',
             		tabsize: 2,
             		height: 500
           			});
         		</script>
 				<div class="row">
-					<div class="col-md-5"></div>
-					<button class="btn-get-started col-md-2 m-4" type="submit">CONFIRM</button>
-					<div class="col-md-5"></div>
+					<div class="col-md-3"></div>
+						<button type ="button" id="updateBtn" class="btn-get-started col-md-2 m-4">CONFIRM</button>
+					<div class="col-md-1"></div>
+						<a class="btn-get-started col-md-2 m-4" href="${root}/board/delete?postNo=${post.postNo}">DELETE</a>
 				</div>
 			</form>
 		</div>

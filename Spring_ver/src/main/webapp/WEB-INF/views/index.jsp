@@ -64,15 +64,13 @@
           <li><a class="nav-link scrollto" href="${root}/notice/list">NOTICE</a></li>
           <li class="dropdown"><a href="#"><span>SEARCH</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="search/searchMain.jsp">BY REGION</a></li>
+              <li><a href="/house/search">BY REGION</a></li>
               <li><a href="#">BY NAME</a></li>
             </ul>
           </li>
-          
-          <li><a class="nav-link scrollto" href="${root}/house/inquire/${userInfo.memId}">FAVORITE</a></li>
-          <li><a class="nav-link scrollto" href="${root}/board/list">BOARD</a></li>
+          <li><a class="nav-link scrollto" href="${root}/favorite/list/${userInfo.memId}">FAVORITE</a></li>
+           <li><a class="nav-link scrollto" href="${root}/board/list?pg=1&key=&word=">BOARD</a></li>
           <li><a class="nav-link scrollto" href="${root}/member/info/${userInfo.memId}">INFO</a></li>
-<!-- 			<li><a class="nav-link scrollto" href="./member/memberInfo.jsp">INFO</a></li> -->
           <li><a class="nav-link scrollto" href="${root}/member/logout">LOGOUT</a></li>
           <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
           </c:if>
@@ -116,20 +114,20 @@
                   <input type="hidden" name="act" value="signup">
                   <div class="row">
                     <div class="col-md-6 mb-3"> <label for="id">ID</label> 
-                      <input type="text" class="form-control" id="id" name="id" required>
+                      <input type="text" class="form-control" id="memId" name="memId" required>
                     </div>
                     <div class="col-md-6 mb-3"> <label for="pw">PASSWORD</label> 
-                      <input type="password" class="form-control" id="pw" name="pw" required>
+                      <input type="password" class="form-control" id="memPw" name="memPw" required>
                     </div>
                   </div>
                   <div class="mb-3"> <label for="name">NAME</label> 
-                    <input type="text" class="form-control" id="email" name="name" required>
+                    <input type="text" class="form-control" id="memName" name="memName" required>
                   </div>
                   <div class="mb-3"> <label for="email">EMAIL</label> 
-                    <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                    <input type="email" class="form-control" id="memEmail" name="memEmail" placeholder="you@example.com" required>
                   </div>
                   <div class="mb-3"> <label for="tel">PHONE</label> 
-                    <input type="text" class="form-control" id="tel" name="tel" placeholder="010-XXXX-XXXX" required>
+                    <input type="text" class="form-control" id="memTel" name="memTel" placeholder="010-XXXX-XXXX" required>
                   </div>
                   <div class="row">
                     <div class="col"></div>
