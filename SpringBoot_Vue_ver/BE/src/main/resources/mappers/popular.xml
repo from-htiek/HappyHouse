@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.mapper.PopularMapper">
+
+	<select id="getPopularHouse" resultType="popularHouseDto">
+		select h.aptName, l.aptCode, count(*) as cnt
+		from houselike l
+		join houseinfo h on l.aptCode = h.aptCode
+		group by aptCode
+		order by cnt desc, aptCode
+		limit 10;
+	</select>
+	
+	<select id="getPopularArea" resultType="popularAreaDto">
+		select d.sidoName, d.gugunName, d.dongName, w.dongCode, count(*) as cnt
+		from watchlist w
+		join dongcode d on d.dongCode = w.dongCode
+		group by dongCode
+		order by cnt desc, dongCode
+		limit 10;
+	</select>
+	
+</mapper>

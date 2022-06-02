@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.mapper.HouseLikeMapper">
+
+	<insert id="insertLikeHouse" parameterType="houseLikeDto">
+		insert into houselike (memId, aptCode, addDate)
+		values (#{memId}, #{aptCode}, now()); 
+	</insert>
+	
+	<delete id="deleteLikeHouse" parameterType="int">
+		delete from houselike
+		where no = #{no};
+	</delete>
+	
+	<select id="getLikeHouse" parameterType="String" resultType="houseLikeDto">
+		select l.no, l.memId, l.aptCode, l.addDate, h.aptName, h.lat, h.lng
+		from houselike l left join houseinfo h
+        on l.aptCode = h.aptCode
+        where memId = #{memId};
+	</select>
+	
+	<insert id="addBookmarkArea" parameterType="areaLikeDto">
+		insert into watchlist(memId, dongCode, addDate)
+		values (#{memId}, #{dongCode}, now());
+	</insert>
+	
+	<select id="getBookmarkArea" parameterType="String" resultType="areaLikeDto">
+		select w.no, w.memId, d.sidoName, d.gugunName, d.dongName, w.dongCode
+		from watchlist w
+		join dongcode d on d.dongCode = w.dongCode
+		where memId = #{memId};
+	</select>
+	
+</mapper>
